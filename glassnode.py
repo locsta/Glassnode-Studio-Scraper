@@ -22,13 +22,13 @@ def scrape_glassnode_studio():
     url = "https://studio.glassnode.com/metrics?a=BTC&m=addresses.ActiveCount"
     browser = SeleniumClass(headless=False).open_browser()
     browser.get(url)
-    time.sleep(5)
-    browser.find_element_by_class_name("ant-btn-link").click()
+    WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.CLASS_NAME, 'ant-btn-link'))).click()
     browser.find_element_by_id("loginForm_email").send_keys(login_email)
     browser.find_element_by_id("loginForm_password").send_keys(login_password)
     time.sleep(1)
     browser.find_element_by_class_name("ant-btn-primary").click()
     list_sections = {}
+    # Wait for the page to load fully TODO: look for a specific element present when the page is fully loaded and sue WebDriverWait instead of time.sleep(8)
     time.sleep(8)
     couldn_scrape = []
     for i in range(3, 21, 1):
