@@ -1,4 +1,4 @@
-from selenium_scraper import SeleniumClass
+from selenium_scraper import Scraper
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver import ActionChains
 import time
@@ -14,7 +14,7 @@ def scrape_glassnode_studio():
     login_email = input("Please enter your email address:")
     login_password = input("Please enter your password:")
     url = "https://studio.glassnode.com/metrics?a=BTC&m=addresses.ActiveCount"
-    browser = SeleniumClass(headless=False).open_browser()
+    browser = Scraper(headless=False).open_browser()
     browser.get(url)
     time.sleep(5)
     browser.find_element_by_class_name("ant-btn-link").click()
